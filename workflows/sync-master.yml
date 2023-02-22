@@ -1,0 +1,10 @@
+name: Sync Master
+on: workflow_call
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - run: git push --force origin HEAD:refs/heads/master
