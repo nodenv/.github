@@ -1,0 +1,5 @@
+{
+    "name": "Test",
+    "description": "Test with npm and super-linter",
+    "iconName": "octicon codescan-checkmark"
+}
