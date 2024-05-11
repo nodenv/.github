@@ -1,8 +1,8 @@
-name: Sync Master
+name: Sync Main-Master
 on: workflow_call
 
 jobs:
-  sync:
+  main-master:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
