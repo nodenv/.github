@@ -1,8 +1,8 @@
 name: Sync Master
 on:
-  push: { branches: main }
+  push: { branches: $default-branch }
   workflow_dispatch:
 
 jobs:
   sync:
-    uses: nodenv/.github/workflows/sync-master.yml@main
+    uses: nodenv/.github/.github/workflows/sync-master.yml@v1
