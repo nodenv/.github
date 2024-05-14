@@ -1,16 +1,13 @@
 name: Tag Major Version
 on:
   push: { tags: "v*.*.*" }
+  workflow_dispatch:
   workflow_call:
 
 jobs:
   bump:
     runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
     steps:
       - uses: actions/checkout@v4
-      - env:
-          tag: ${{github.ref}}
-        run: |
-          tag=${tag#refs/tags/}
-          major=${tag%%.*}
-          git push -f origin "HEAD:refs/heads/$major"
+      - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
