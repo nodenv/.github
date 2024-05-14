@@ -1,6 +1,0 @@
-{
-    "name": "Sync Main to Master",
-    "description": "Keep an old master branch in sync with the new, default, main.",
-    "iconName": "octicon git-merge",
-    "categories": [ "git", "deployment", "automation" ]
-}
