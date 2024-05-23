@@ -5,8 +5,10 @@ on:
 jobs:
   github:
     runs-on: ubuntu-latest
+    permissions: { contents: write }
     steps:
       - uses: actions/checkout@v4
-      - run: gh release create ${{github.ref_name}} --generate-notes
+      - run: gh release create ${tag/*-*/$tag --prerelease} --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
+          tag: ${{ github.ref_name }}
