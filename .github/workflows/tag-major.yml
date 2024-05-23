@@ -4,10 +4,13 @@ on:
   workflow_dispatch:
   workflow_call:
 
+permissions: read-all
+
 jobs:
   major:
-    runs-on: ubuntu-latest
     if: github.ref_type == 'tag'
+    permissions: { contents: write }
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
