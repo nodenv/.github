@@ -1,17 +1,12 @@
 name: Test
 on: [push, pull_request]
 
+permissions: read-all
+
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: npm cit
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: github/super-linter/slim@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: nodenv/.github/.github/workflows/test.yml@main
+    permissions:
+      contents: read
+      packages: read
+      statuses: write # to report status checks

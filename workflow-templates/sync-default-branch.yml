@@ -3,7 +3,7 @@ on:
   push: { branches: $default-branch }
   workflow_dispatch:
 
-permissions: { contents: read }
+permissions: read-all
 
 # One-time commands for users to switch-over:
 #
@@ -16,5 +16,5 @@ permissions: { contents: read }
 
 jobs:
   sync:
-    uses: nodenv/.github/.github/workflows/sync-default-branch.yml@v3
     permissions: { contents: write }
+    uses: nodenv/.github/.github/workflows/sync-default-branch.yml@main
