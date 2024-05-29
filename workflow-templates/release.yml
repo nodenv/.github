@@ -5,4 +5,4 @@ on:
 jobs:
   github:
     permissions: { contents: write }
-    uses: nodenv/.github/.github/workflows/release.yml@main
+    uses: nodenv/.github/.github/workflows/release.yml@v4
