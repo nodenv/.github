@@ -2,7 +2,7 @@ name: Release
 on:
   workflow_call:
     inputs:
-      hombrew:
+      homebrew:
         description: 'Boolean to opt-out of releasing to homebrew.'
         default: true
         required: false
