@@ -6,9 +6,9 @@ on:
 permissions: { contents: write }
 
 jobs:
-  major:
-    if: github.ref_type == 'tag'
+  major-tag:
+    if: github.ref_type == 'tag' && !contains(github.ref, '-') # skip prereleases
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
+      - run: git push -f origin "HEAD:${GITHUB_REF%%.*}"
