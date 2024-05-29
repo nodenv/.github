@@ -29,6 +29,6 @@ jobs:
         with:
           homebrew-tap: ${{ contains(fromJSON('["nodenv","node-build"]'),
             github.event.repository.name)
-            && 'Homebrew/homebrew-core' || 'nodenv/nodenv' }}
+            && 'Homebrew/homebrew-core' || 'nodenv/homebrew-nodenv' }}
         env:
           COMMITTER_TOKEN: ${{ secrets.BOT_TOKEN }}
