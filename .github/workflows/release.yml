@@ -1,6 +1,15 @@
 name: Release
-on: workflow_call
-permissions: { contents: write }
+on:
+  workflow_call:
+    inputs:
+      homebrew:
+        description: 'Boolean to opt-out of releasing to homebrew.'
+        default: true
+        required: false
+        type: boolean
+
+permissions:
+  contents: write
 
 jobs:
   github:
@@ -11,3 +20,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           tag: ${{ github.ref_name }}
+
+  homebrew:
+    if: inputs.homebrew && !contains(github.ref, '-') # skip prereleases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mislav/bump-homebrew-formula-action@v3
+        with:
+          homebrew-tap: ${{ contains(fromJSON('["nodenv","node-build"]'),
+            github.event.repository.name)
+            && 'Homebrew/homebrew-core' || 'nodenv/homebrew-nodenv' }}
+        env:
+          COMMITTER_TOKEN: ${{ secrets.BOT_TOKEN }}
