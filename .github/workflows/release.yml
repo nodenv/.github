@@ -7,9 +7,13 @@ on:
         default: true
         required: false
         type: boolean
+      npm_scope: # FIXME until setup-node infers scope from package.json
+        description: 'Name of scope to publish package under.'
+        default: nodenv
+        required: false
+        type: string
 
-permissions:
-  contents: write
+permissions: {contents: write}
 
 jobs:
   github:
@@ -39,3 +43,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: git push -f origin "HEAD:${GITHUB_REF%%.*}"
+
+  npm:
+    permissions: {id-token: write}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: # FIXME https://github.com/actions/setup-node/pull/129
+          scope: ${{ inputs.npm_scope }}
+          registry-url: https://registry.npmjs.org
+      - run: npm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
