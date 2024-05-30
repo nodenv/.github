@@ -22,3 +22,22 @@ jobs:
       - uses: super-linter/super-linter/slim@v6
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+  ossf-scorecard:
+    permissions: {id-token: write, security-events: write}
+    runs-on: ubuntu-latest
+    env: {results: results.sarif}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ossf/scorecard-action@v2.3.3
+        with:
+          results_file: ${{ env.results }}
+          results_format: sarif
+          publish_results: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.results }}
+          path: ${{ env.results }}
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ env.results }}
