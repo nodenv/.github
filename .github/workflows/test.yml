@@ -1,6 +1,12 @@
 name: Test
 on:
   workflow_call:
+    inputs:
+      superlinter:
+        description: 'Boolean to opt-out of super-linter.'
+        default: true
+        required: false
+        type: boolean
 
 jobs:
   npm-cit:
@@ -11,6 +17,7 @@ jobs:
     - run: npm cit
 
   super-linter:
+    if: inputs.superlinter
     permissions: {contents: read, packages: read, statuses: write}
     runs-on: ubuntu-latest
     steps:
