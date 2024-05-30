@@ -1,5 +1,9 @@
 name: Test
 on:
+  push:
+  pull_request:
+  schedule: [{cron: '0 0 10 * *'}] # monthly https://crontab.guru/#0_0_10_*_*
+  workflow_dispatch:
   workflow_call:
 
 jobs:
@@ -10,17 +14,11 @@ jobs:
       - run: npm cit
 
   super-linter:
+    permissions: {contents: read, packages: read, statuses: write}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
-      statuses: write # to report status checks
     steps:
       - uses: actions/checkout@v4
-        with:
-          # super-linter needs the full git history to get the
-          # list of files that changed across commits
-          fetch-depth: 0
+        with: {fetch-depth: 0} # full history for files changed
       - uses: super-linter/super-linter/slim@v6
         env:
           GITHUB_TOKEN: ${{ github.token }}
