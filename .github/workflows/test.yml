@@ -6,15 +6,34 @@ jobs:
   npm-cit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: npm cit
+    - uses: actions/checkout@v4
+    - run: npm cit
 
   super-linter:
     permissions: {contents: read, packages: read, statuses: write}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with: {fetch-depth: 0}
-      - uses: super-linter/super-linter/slim@v6
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+    - uses: actions/checkout@v4
+      with: {fetch-depth: 0} # full history for files changed
+    - uses: super-linter/super-linter/slim@v6
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+
+  ossf-scorecard:
+    if: github.ref_name == 'main'
+    permissions: {id-token: write, security-events: write}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: ossf/scorecard-action@v2.3.3
+      with:
+        results_file: ossf-scorecard-results.sarif
+        results_format: sarif
+        publish_results: true
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ossf-scorecard-results.sarif
+        path: ossf-scorecard-results.sarif
+    - uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ossf-scorecard-results.sarif
