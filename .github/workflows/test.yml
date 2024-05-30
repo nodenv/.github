@@ -4,7 +4,8 @@ on:
 
 jobs:
   npm-cit:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
+    strategy: {matrix: {os: [ubuntu, macOS]}}
     steps:
     - uses: actions/checkout@v4
     - run: npm cit
