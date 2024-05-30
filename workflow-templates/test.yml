@@ -4,8 +4,7 @@ on:
   pull_request:
   workflow_dispatch:
   schedule: # monthly (10th)
-  - cron: '0 0 10 * *' # https://crontab.guru/#0_0_10_*_*
-
+    - cron: '0 0 10 * *' # https://crontab.guru/#0_0_10_*_*
 
 permissions: read-all
 
