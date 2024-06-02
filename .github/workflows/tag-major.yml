@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: git push -f origin "HEAD:${GITHUB_REF%%.*}"
+      - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
