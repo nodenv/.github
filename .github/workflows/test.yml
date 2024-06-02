@@ -1,5 +1,9 @@
 name: Test
 on:
+  push:
+  pull_request:
+  schedule: [{cron: '0 0 10 * *'}] # monthly https://crontab.guru/#0_0_10_*_*
+  workflow_dispatch:
   workflow_call:
     inputs:
       superlinter:
@@ -7,9 +11,11 @@ on:
         default: true
         required: false
         type: boolean
+permissions: {contents: read}
 
 jobs:
   npm-cit:
+    if: github.event_name == 'workflow_call' # skip internal test runs
     runs-on: ${{ matrix.os }}-latest
     strategy: {matrix: {os: [ubuntu, macOS]}}
     steps:
@@ -17,7 +23,7 @@ jobs:
     - run: npm cit
 
   super-linter:
-    if: inputs.superlinter
+    if: inputs.superlinter || github.event_name != 'workflow_call'
     permissions: {contents: read, packages: read, statuses: write}
     runs-on: ubuntu-latest
     steps:
