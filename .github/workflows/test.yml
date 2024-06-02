@@ -22,7 +22,7 @@ jobs:
     - run: npm cit
 
   super-linter:
-    if: inputs.superlinter
+    if: inputs.superlinter || github.event_name != 'workflow_call'
     permissions: {contents: read, packages: read, statuses: write}
     runs-on: ubuntu-latest
     steps:
