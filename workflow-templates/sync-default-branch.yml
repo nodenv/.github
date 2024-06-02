@@ -2,8 +2,12 @@ name: Sync Default Branch
 on:
   push: { branches: $default-branch }
   workflow_dispatch:
+permissions: {contents: read}
 
-permissions: read-all
+jobs:
+  sync:
+    permissions: {contents: write}
+    uses: nodenv/.github/.github/workflows/sync-default-branch.yml@v4
 
 # One-time commands for users to switch-over:
 #
@@ -13,8 +17,3 @@ permissions: read-all
 # git branch -u origin/main main
 # git remote set-head origin -a
 # ```
-
-jobs:
-  sync:
-    permissions: { contents: write }
-    uses: nodenv/.github/.github/workflows/sync-default-branch.yml@v4
