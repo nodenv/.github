@@ -22,10 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with: {fetch-depth: 0} # full history for files changed
+      with: {fetch-depth: 0}
     - uses: super-linter/super-linter/slim@v6
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
 
   ossf-scorecard:
     if: github.ref_name == 'main'
