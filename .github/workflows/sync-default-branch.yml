@@ -1,10 +1,11 @@
 name: Sync Default Branch
 on: workflow_call
-permissions: { contents: write }
+permissions: {}
 
 jobs:
   default-branch:
     if: github.ref_name == github.event.repository.default_branch
+    permissions: {contents: write}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6

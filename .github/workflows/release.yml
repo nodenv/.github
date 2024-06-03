@@ -13,10 +13,11 @@ on:
         required: false
         type: string
 
-permissions: {contents: write}
+permissions: {contents: read}
 
 jobs:
   github:
+    permissions: {contents: write}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
@@ -29,6 +30,7 @@ jobs:
 
   homebrew:
     if: inputs.homebrew && !contains(github.ref, '-') # skip prereleases
+    permissions: {contents: read}
     runs-on: ubuntu-latest
     steps:
     - uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3.1
@@ -41,6 +43,7 @@ jobs:
 
   major-tag:
     if: ${{ !contains(github.ref, '-') }} # skip prereleases
+    permissions: {contents: write}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
