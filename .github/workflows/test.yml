@@ -19,7 +19,7 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     strategy: {matrix: {os: [ubuntu, macOS]}}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
     - run: npm cit
 
   super-linter:
@@ -27,9 +27,9 @@ jobs:
     permissions: {contents: read, packages: read, statuses: write}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       with: {fetch-depth: 0}
-    - uses: super-linter/super-linter/slim@v6
+    - uses: super-linter/super-linter/slim@5b638caee6ba65e25e07143887b669a1233847a0 # v6.5.1
       env:
         GITHUB_TOKEN: ${{ github.token }}
         BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
@@ -39,16 +39,16 @@ jobs:
     permissions: {id-token: write, security-events: write}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: ossf/scorecard-action@v2.3.3
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - uses: ossf/scorecard-action@dc50aa9510b46c811795eb24b2f1ba02a914e534 # v2.3.3
       with:
         results_file: ossf-scorecard-results.sarif
         results_format: sarif
         publish_results: true
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
       with:
         name: ossf-scorecard-results.sarif
         path: ossf-scorecard-results.sarif
-    - uses: github/codeql-action/upload-sarif@v3
+    - uses: github/codeql-action/upload-sarif@f079b8493333aace61c81488f8bd40919487bd9f # v3.25.7
       with:
         sarif_file: ossf-scorecard-results.sarif
