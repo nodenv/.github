@@ -3,11 +3,12 @@ on:
   push: { tags: "v*.*.*" }
   workflow_dispatch:
   workflow_call:
-permissions: { contents: write }
+permissions: {}
 
 jobs:
   major:
     if: github.ref_type == 'tag' && !contains(github.ref, '-') # skip prereleases
+    permissions: {contents: write}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6

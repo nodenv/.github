@@ -30,6 +30,7 @@ jobs:
 
   homebrew:
     if: inputs.homebrew && !contains(github.ref, '-') # skip prereleases
+    permissions: {contents: read}
     runs-on: ubuntu-latest
     steps:
     - uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3.1
