@@ -10,5 +10,5 @@ jobs:
     if: github.ref_type == 'tag' && !contains(github.ref, '-') # skip prereleases
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
