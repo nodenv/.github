@@ -20,11 +20,8 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     strategy: {matrix: {os: [ubuntu, macOS]}}
     steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
-      with:
-        egress-policy: audit
-
+    - uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+      with: {egress-policy: audit}
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
     - run: npm cit
 
@@ -33,11 +30,8 @@ jobs:
     permissions: {contents: read, packages: read, statuses: write}
     runs-on: ubuntu-latest
     steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
-      with:
-        egress-policy: audit
-
+    - uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+      with: {egress-policy: audit}
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       with: {fetch-depth: 0}
     - uses: super-linter/super-linter/slim@5b638caee6ba65e25e07143887b669a1233847a0 # v6.5.1
@@ -50,11 +44,8 @@ jobs:
     permissions: {id-token: write, security-events: write}
     runs-on: ubuntu-latest
     steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
-      with:
-        egress-policy: audit
-
+    - uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+      with: {egress-policy: audit}
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
     - uses: ossf/scorecard-action@dc50aa9510b46c811795eb24b2f1ba02a914e534 # v2.3.3
       with:
