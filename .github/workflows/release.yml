@@ -12,6 +12,9 @@ on:
         default: nodenv
         required: false
         type: string
+    secrets:
+      NPMJS_TOKEN: {required: true} # required for npm job
+      BOT_TOKEN: {required: false} # required for homebrew job
 
 permissions: {contents: read}
 
