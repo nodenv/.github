@@ -23,7 +23,7 @@ jobs:
     permissions: {contents: write}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
     - run: |
         # shellcheck disable=SC2086
         gh release create ${tag/*-*/"$tag" --prerelease} --generate-notes
@@ -49,14 +49,14 @@ jobs:
     permissions: {contents: write}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
     - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
 
   npm:
     permissions: {id-token: write}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
     - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
       with: # FIXME https://github.com/actions/setup-node/pull/129
         scope: ${{ inputs.npm_scope }}
