@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     strategy: {matrix: {os: [ubuntu, macOS]}}
     steps:
-    - uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+    - uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
       with: {egress-policy: audit}
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
     - run: npm cit
@@ -30,7 +30,7 @@ jobs:
     permissions: {contents: read, packages: read, statuses: write}
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+    - uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
       with: {egress-policy: audit}
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       with: {fetch-depth: 0}
@@ -43,7 +43,7 @@ jobs:
     if: startsWith('pull_request', github.event_name)
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+    - uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
       with: {egress-policy: audit}
     - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
     - uses: actions/dependency-review-action@0efb1d1d84fc9633afcdaad14c485cbbc90ef46c # v2.5.1
@@ -53,7 +53,7 @@ jobs:
     permissions: {id-token: write, security-events: write}
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
+    - uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
       with: {egress-policy: audit}
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
     - uses: ossf/scorecard-action@dc50aa9510b46c811795eb24b2f1ba02a914e534 # v2.3.3
