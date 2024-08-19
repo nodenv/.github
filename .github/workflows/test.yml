@@ -34,7 +34,7 @@ jobs:
       with: {egress-policy: audit}
     - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       with: {fetch-depth: 0}
-    - uses: super-linter/super-linter/slim@5b638caee6ba65e25e07143887b669a1233847a0 # v6.5.1
+    - uses: super-linter/super-linter/slim@02a1172d274f021e4c70f66e23f1085eadd1064b # v7.0.0
       env:
         GITHUB_TOKEN: ${{ github.token }}
         BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
