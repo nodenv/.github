@@ -1,17 +1,25 @@
-# nodenv GitHub Workflows
+Sure, here is the diff representation of the MIT License provided:
 
-This repository houses [reusable workflows][] for the [nodenv organization][].
-It also contains [starter workflows][] (templates) for _calling_ these reusable workflows.
-
-## Versioning
-
-The reusable workflows attempt to adhere to [SemVer](https://semver.org) with
-the release tags. For convenience, each tagged release will also advance the
-corresponding "major version" branch. e.g. Tagging a release like `v2.5.0`
-will fast-forward the `v2` branch to the latest 2.x tag. This way consumers of
-these reusable workflows may "soft-pin" to a major version and automatically
-get minor and patch updates. see [Contributing#releasing](/docs/CONTRIBUTING.md#releasing)
-
-  [nodenv organization]: https://github.com/nodenv
-  [reusable workflows]: https://docs.github.com/en/actions/using-workflows/reusing-workflows
-  [starter workflows]: https://docs.github.com/en/actions/using-workflows/creating-starter-workflows-for-your-organization
+```diff
++ MIT License
++ 
++ Copyright (c) 2023 nodenv
++ 
++ Permission is hereby granted, free of charge, to any person obtaining a copy
++ of this software and associated documentation files (the "Software"), to deal
++ in the Software without restriction, including without limitation the rights
++ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++ copies of the Software, and to permit persons to whom the Software is
++ furnished to do so, subject to the following conditions:
++ 
++ The above copyright notice and this permission notice shall be included in all
++ copies or substantial portions of the Software.
++ 
++ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ SOFTWARE.
+```
