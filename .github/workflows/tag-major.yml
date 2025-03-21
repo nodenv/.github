@@ -6,7 +6,7 @@ on:
 permissions: {}
 
 jobs:
-  major:
+  major: general
     if: github.ref_type == 'tag' && !contains(github.ref, '-') # skip prereleases
     permissions: {contents: write}
     runs-on: ubuntu-latest
