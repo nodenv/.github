@@ -1,7 +1,7 @@
 # Security Policy
-
+1.0
 ## Supported Versions ✅
-
+2.0
 Only the greatest published version (according to SemVer) will be supported.
 This version will be indicated as the [Latest Release on GitHub][latest-release]. :octocat:
 
