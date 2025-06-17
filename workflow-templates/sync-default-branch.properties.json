@@ -1,6 +1,6 @@
 {
-    "name": "Sync Default Branch",
-    "description": "Keep an old legacy branch in sync with the new, default (main).",
-    "iconName": "octicon git-merge",
-    "categories": [ "git", "deployment", "automation" ]
+  "name": "Sync Default Branch",
+  "description": "Keep an old legacy branch in sync with the new, default (main).",
+  "iconName": "octicon git-merge",
+  "categories": ["git", "deployment", "automation"]
 }

@@ -1,6 +1,12 @@
 {
-    "name": "Test",
-    "description": "Test with npm and super-linter",
-    "iconName": "octicon codescan-checkmark",
-    "categories": [ "continuous-integration", "testing", "linting", "automation", "npm" ]
+  "name": "Test",
+  "description": "Test with npm and super-linter",
+  "iconName": "octicon codescan-checkmark",
+  "categories": [
+    "continuous-integration",
+    "testing",
+    "linting",
+    "automation",
+    "npm"
+  ]
 }
