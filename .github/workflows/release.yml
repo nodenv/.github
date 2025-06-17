@@ -3,72 +3,72 @@ on:
   workflow_call:
     inputs:
       homebrew:
-        description: 'Boolean to opt-out of releasing to homebrew.'
+        description: "Boolean to opt-out of releasing to homebrew."
         default: true
         required: false
         type: boolean
       npm_scope: # FIXME until setup-node infers scope from package.json
-        description: 'Name of scope to publish package under.'
+        description: "Name of scope to publish package under."
         default: nodenv
         required: false
         type: string
     secrets:
-      NPMJS_TOKEN: {required: true} # required for npm job
-      BOT_TOKEN: {required: false} # required for homebrew job
+      NPMJS_TOKEN: { required: true } # required for npm job
+      BOT_TOKEN: { required: false } # required for homebrew job
 
-permissions: {contents: read}
+permissions: { contents: read }
 
 jobs:
   github:
-    permissions: {contents: write}
+    permissions: { contents: write }
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-      with: {egress-policy: audit}
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - run: |
-        # shellcheck disable=SC2086
-        gh release create ${tag/*-*/"$tag" --prerelease} --generate-notes
-      env:
-        GH_TOKEN: ${{ github.token }}
-        tag: ${{ github.ref_name }}
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: |
+          # shellcheck disable=SC2086
+          gh release create ${tag/*-*/"$tag" --prerelease} --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          tag: ${{ github.ref_name }}
 
   homebrew:
     if: inputs.homebrew && !contains(github.ref, '-') # skip prereleases
-    permissions: {contents: read}
+    permissions: { contents: read }
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-      with: {egress-policy: audit}
-    - uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3.1
-      with:
-        homebrew-tap: ${{ contains(fromJSON('["nodenv","node-build"]'),
-          github.event.repository.name)
-          && 'Homebrew/homebrew-core' || 'nodenv/homebrew-nodenv' }}
-      env:
-        COMMITTER_TOKEN: ${{ secrets.BOT_TOKEN }}
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3.1
+        with:
+          homebrew-tap: ${{ contains(fromJSON('["nodenv","node-build"]'),
+            github.event.repository.name)
+            && 'Homebrew/homebrew-core' || 'nodenv/homebrew-nodenv' }}
+        env:
+          COMMITTER_TOKEN: ${{ secrets.BOT_TOKEN }}
 
   major-tag:
     if: ${{ !contains(github.ref, '-') }} # skip prereleases
-    permissions: {contents: write}
+    permissions: { contents: write }
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-      with: {egress-policy: audit}
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
 
   npm:
-    permissions: {id-token: write}
+    permissions: { id-token: write }
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-      with: {egress-policy: audit}
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
-      with: # FIXME https://github.com/actions/setup-node/pull/129
-        scope: ${{ inputs.npm_scope }}
-        registry-url: https://registry.npmjs.org
-    - run: npm publish --provenance
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with: # FIXME https://github.com/actions/setup-node/pull/129
+          scope: ${{ inputs.npm_scope }}
+          registry-url: https://registry.npmjs.org
+      - run: npm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}

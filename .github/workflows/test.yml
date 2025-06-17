@@ -3,68 +3,68 @@ on:
   workflow_call:
     inputs:
       npm:
-        description: 'Run npm-cit job.'
+        description: "Run npm-cit job."
         default: true
         required: false
         type: boolean
       superlinter:
-        description: 'Run super-linter job.'
+        description: "Run super-linter job."
         default: true
         required: false
         type: boolean
-permissions: {contents: read}
+permissions: { contents: read }
 
 jobs:
   npm-cit:
     if: inputs.npm
     runs-on: ${{ matrix.os }}-latest
-    strategy: {matrix: {os: [ubuntu, macOS]}}
+    strategy: { matrix: { os: [ubuntu, macOS] } }
     steps:
-    - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-      with: {egress-policy: audit}
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - run: npm cit
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: npm cit
 
   super-linter:
     if: inputs.superlinter
-    permissions: {contents: read, packages: read, statuses: write}
+    permissions: { contents: read, packages: read, statuses: write }
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-      with: {egress-policy: audit}
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-      with: {fetch-depth: 0}
-    - uses: super-linter/super-linter/slim@5b638caee6ba65e25e07143887b669a1233847a0 # v6.5.1
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-        BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with: { fetch-depth: 0 }
+      - uses: super-linter/super-linter/slim@5b638caee6ba65e25e07143887b669a1233847a0 # v6.5.1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
 
   dependency-review:
     if: startsWith('pull_request', github.event_name)
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-      with: {egress-policy: audit}
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - uses: actions/dependency-review-action@da24556b548a50705dd671f47852072ea4c105d9 # v4.7.1
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/dependency-review-action@da24556b548a50705dd671f47852072ea4c105d9 # v4.7.1
 
   ossf-scorecard:
     if: github.ref_name == github.event.repository.default_branch
-    permissions: {id-token: write, security-events: write}
+    permissions: { id-token: write, security-events: write }
     runs-on: ubuntu-latest
     steps:
-    - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-      with: {egress-policy: audit}
-    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-    - uses: ossf/scorecard-action@dc50aa9510b46c811795eb24b2f1ba02a914e534 # v2.3.3
-      with:
-        results_file: ossf-scorecard-results.sarif
-        results_format: sarif
-        publish_results: true
-    - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
-      with:
-        name: ossf-scorecard-results.sarif
-        path: ossf-scorecard-results.sarif
-    - uses: github/codeql-action/upload-sarif@4dd16135b69a43b6c8efb853346f8437d92d3c93 # v3.26.6
-      with:
-        sarif_file: ossf-scorecard-results.sarif
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: ossf/scorecard-action@dc50aa9510b46c811795eb24b2f1ba02a914e534 # v2.3.3
+        with:
+          results_file: ossf-scorecard-results.sarif
+          results_format: sarif
+          publish_results: true
+      - uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
+        with:
+          name: ossf-scorecard-results.sarif
+          path: ossf-scorecard-results.sarif
+      - uses: github/codeql-action/upload-sarif@4dd16135b69a43b6c8efb853346f8437d92d3c93 # v3.26.6
+        with:
+          sarif_file: ossf-scorecard-results.sarif

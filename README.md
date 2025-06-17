@@ -12,6 +12,6 @@ will fast-forward the `v2` branch to the latest 2.x tag. This way consumers of
 these reusable workflows may "soft-pin" to a major version and automatically
 get minor and patch updates. see [Contributing#releasing](/docs/CONTRIBUTING.md#releasing)
 
-  [nodenv organization]: https://github.com/nodenv
-  [reusable workflows]: https://docs.github.com/en/actions/using-workflows/reusing-workflows
-  [starter workflows]: https://docs.github.com/en/actions/using-workflows/creating-starter-workflows-for-your-organization
+[nodenv organization]: https://github.com/nodenv
+[reusable workflows]: https://docs.github.com/en/actions/using-workflows/reusing-workflows
+[starter workflows]: https://docs.github.com/en/actions/using-workflows/creating-starter-workflows-for-your-organization

@@ -18,5 +18,5 @@ Once the tag is created by the release,
 it will kick off the [tag-major.yml][] workflow
 which will bump the vN ref for downstream users to pin to.
 
-  [test.yml]: https://github.com/nodenv/.github/blob/main/.github/workflows/test.yml
-  [tag-major.yml]: https://github.com/nodenv/.github/blob/main/.github/workflows/tag-major.yml
+[test.yml]: https://github.com/nodenv/.github/blob/main/.github/workflows/test.yml
+[tag-major.yml]: https://github.com/nodenv/.github/blob/main/.github/workflows/tag-major.yml

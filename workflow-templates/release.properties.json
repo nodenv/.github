@@ -1,6 +1,6 @@
 {
-    "name": "Release",
-    "description": "Release to GitHub",
-    "iconName": "octicon tag",
-    "categories": [ "github", "deployment", "automation" ]
+  "name": "Release",
+  "description": "Release to GitHub",
+  "iconName": "octicon tag",
+  "categories": ["github", "deployment", "automation"]
 }
