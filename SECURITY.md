@@ -10,7 +10,7 @@ though it is instead recommended to pin to a specific git-sha and use [Dependabo
 
 ## Reporting a Vulnerability ⚠️
 
-Use GitHub's [built-in reporting mechanism][gh-security].
+Use GitHub's [built-in reporting mechanism][gh-security] for disclosure.
 
 [latest-release]: ../../releases/latest
 [dependabot]: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#github-actions
