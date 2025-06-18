@@ -12,6 +12,6 @@ though it is instead recommended to pin to a specific git-sha and use [Dependabo
 
 Use GitHub's [built-in reporting mechanism][gh-security].
 
-[latest-release]: https://github.com/nodenv/.github/releases/latest
+[latest-release]: ../../../releases/latest
 [dependabot]: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#github-actions
-[gh-security]: https://github.com/nodenv/.github/security/advisories/new
+[gh-security]: ../../../security/advisories/new
