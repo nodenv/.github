@@ -9,7 +9,7 @@ while also running most of those same tests within this repository itself.
 
 ## Releasing
 
-1. [Draft a new release](https://github.com/nodenv/.github/releases/new)
+1. [Draft a new release](../../releases/new)
 2. Decide on next tag based on SemVer
 3. Generate release notes (button)
 4. Publish
