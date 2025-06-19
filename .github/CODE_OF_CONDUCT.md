@@ -65,9 +65,9 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by opening an issue or contacting one or more of the project
-maintainers.  All complaints will be reviewed and investigated promptly and
-fairly.
+reported using GitHub's abuse and moderation reporting mechanisms, or by
+opening an issue or contacting any of the project maintainers.  All complaints
+will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.
