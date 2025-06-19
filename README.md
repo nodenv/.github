@@ -9,6 +9,8 @@ repository. To distinguish them, the workflows for this repository are
 prefixed with `.github_` (and they mostly call the reusable workflows
 themselves).
 
+We can see which downstream repositories use these reusable workflows in the [dependency graph][].
+
 It also contains [starter workflows][] (templates) that generate the
 workflows that _call_ these reusable workflows.
 
@@ -36,3 +38,4 @@ workflow which will bump the vN ref for downstream users to pin to.
 [reusable workflows]: https://docs.github.com/en/actions/using-workflows/reusing-workflows
 [starter workflows]: https://docs.github.com/en/actions/using-workflows/creating-starter-workflows-for-your-organization
 [release.yml]: .github/workflows/release.yml
+[dependency graph]: https://github.com/nodenv/.github/network/dependents
