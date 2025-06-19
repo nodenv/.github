@@ -1,0 +1,12 @@
+name: Release
+on:
+  push: { tags: "v*.*.*" }
+  workflow_dispatch:
+permissions: {}
+
+jobs:
+  release:
+    uses: ./.github/workflows/release.yml
+    with: { homebrew: false }
+    permissions: { contents: write }
+    secrets: inherit
