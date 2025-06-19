@@ -5,7 +5,7 @@
 This repository houses [reusable workflows][] for the [nodenv organization][].
 Unfortunately, GitHub doesn't allow them to live in any other directory, so the
 reusable workflows are all in the same location as the workflows _for this
-repository.  To distinguish them, the workflows for this repository are
+repository. To distinguish them, the workflows for this repository are
 prefixed with `.github_` (and they mostly call the reusable workflows
 themselves).
 
