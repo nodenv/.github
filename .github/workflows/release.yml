@@ -61,6 +61,7 @@ jobs:
       - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
 
   npm:
+    if: inputs.npm_scope # FIXME temp hack to allow npm opt-out
     permissions: { id-token: write }
     runs-on: ubuntu-latest
     steps:
