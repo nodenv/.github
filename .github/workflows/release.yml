@@ -7,11 +7,21 @@ on:
         default: true
         required: false
         type: boolean
+      npm:
+        description: "Boolean to opt-out of releasing to npm."
+        default: true
+        required: false
+        type: boolean
       npm_scope: # FIXME until setup-node infers scope from package.json
         description: "Name of scope to publish package under."
         default: nodenv
         required: false
         type: string
+      vMajor:
+        description: "Boolean to opt-out of pushing a vMajor ref."
+        default: false
+        required: false
+        type: boolean
     secrets:
       NPMJS_TOKEN: { required: true } # required for npm job
       BOT_TOKEN: { required: false } # required for homebrew job
@@ -48,20 +58,8 @@ jobs:
         env:
           COMMITTER_TOKEN: ${{ secrets.BOT_TOKEN }}
 
-  major-tag:
-    if: github.ref_type == 'tag' && !contains(github.ref, '-') # skip prereleases
-    permissions: { contents: write }
-    runs-on: ubuntu-latest
-    steps:
-      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
-        with: { egress-policy: audit }
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      # FIXME pushes branch instead of tag because github bug:
-      # https://github.com/orgs/community/discussions/163366
-      - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
-
   npm:
-    if: inputs.npm_scope # FIXME temp hack to allow npm opt-out
+    if: inputs.npm
     permissions: { id-token: write }
     runs-on: ubuntu-latest
     steps:
@@ -75,3 +73,15 @@ jobs:
       - run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+
+  vMajor-ref:
+    if: inputs.vMajor && !contains(github.ref, '-') # skip prereleases
+    permissions: { contents: write }
+    runs-on: ubuntu-latest
+    steps:
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with: { egress-policy: audit }
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      # FIXME pushes branch instead of tag because github bug:
+      # https://github.com/orgs/community/discussions/163366
+      - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
