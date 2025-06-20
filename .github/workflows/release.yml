@@ -7,6 +7,11 @@ on:
         default: true
         required: false
         type: boolean
+      npm:
+        description: "Boolean to opt-out of releasing to npm."
+        default: true
+        required: false
+        type: boolean
       npm_scope: # FIXME until setup-node infers scope from package.json
         description: "Name of scope to publish package under."
         default: nodenv
@@ -61,6 +66,7 @@ jobs:
       - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
 
   npm:
+    if: inputs.npm
     permissions: { id-token: write }
     runs-on: ubuntu-latest
     steps:
