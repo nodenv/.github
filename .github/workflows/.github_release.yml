@@ -7,6 +7,6 @@ permissions: {}
 jobs:
   release:
     uses: ./.github/workflows/release.yml
-    with: { homebrew: false, npm_scope: "" }
+    with: { homebrew: false }
     permissions: { contents: write, id-token: write }
     secrets: inherit
