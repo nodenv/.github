@@ -2,12 +2,12 @@ name: Sync Default Branch
 on:
   push: { branches: $default-branch }
   workflow_dispatch:
-permissions: { contents: read }
+permissions: read-all
 
 jobs:
   sync:
+    uses: nodenv/.github/.github/workflows/sync-default-branch.yml@v5
     permissions: { contents: write }
-    uses: nodenv/.github/.github/workflows/sync-default-branch.yml@v4
 # One-time commands for users to switch-over:
 #
 # ```console
