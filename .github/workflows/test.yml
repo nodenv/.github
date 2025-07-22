@@ -12,8 +12,8 @@ on:
         default: true
         required: false
         type: boolean
-permissions: { contents: read }
 
+permissions: { contents: read }
 jobs:
   npm-cit:
     if: inputs.npm
@@ -38,8 +38,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
-          VALIDATE_JAVASCRIPT_STANDARD: false # remove after v8
-          VALIDATE_TYPESCRIPT_STANDARD: false # remove after v8
 
   dependency-review:
     if: startsWith('pull_request', github.event_name)
