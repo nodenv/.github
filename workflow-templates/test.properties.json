@@ -3,10 +3,10 @@
   "description": "Test with npm and super-linter",
   "iconName": "octicon codescan-checkmark",
   "categories": [
+    "code-quality",
     "continuous-integration",
     "testing",
     "linting",
-    "automation",
     "npm"
   ]
 }
