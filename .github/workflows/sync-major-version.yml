@@ -1,0 +1,17 @@
+name: Sync Major Version
+on:
+  workflow_call:
+
+permissions: {}
+jobs:
+  major-version:
+    if: "!contains(github.ref, '-')" # skip prereleases
+    permissions: { contents: write }
+    runs-on: ubuntu-latest
+    steps:
+      - uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+        with: { egress-policy: audit }
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      # FIXME pushes branch instead of tag because github bug:
+      # https://github.com/orgs/community/discussions/163366
+      - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
