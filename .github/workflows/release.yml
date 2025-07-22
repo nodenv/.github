@@ -12,22 +12,18 @@ on:
         default: true
         required: false
         type: boolean
-      npm_scope: # FIXME until setup-node infers scope from package.json
+      # FIXME until setup-node infers scope from package.json
+      # https://github.com/actions/setup-node/pull/129
+      npm_scope:
         description: "Name of scope to publish package under."
         default: nodenv
         required: false
         type: string
-      vMajor:
-        description: "Boolean to opt-out of pushing a vMajor ref."
-        default: false
-        required: false
-        type: boolean
     secrets:
       NPMJS_TOKEN: { required: true } # required for npm job
       BOT_TOKEN: { required: false } # required for homebrew job
 
 permissions: { contents: read }
-
 jobs:
   github:
     permissions: { contents: write }
@@ -75,15 +71,3 @@ jobs:
       - run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
-
-  vMajor-ref:
-    if: inputs.vMajor && !contains(github.ref, '-') # skip prereleases
-    permissions: { contents: write }
-    runs-on: ubuntu-latest
-    steps:
-      - uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
-        with: { egress-policy: audit }
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      # FIXME pushes branch instead of tag because github bug:
-      # https://github.com/orgs/community/discussions/163366
-      - run: git push -f origin "HEAD:refs/heads/${GITHUB_REF_NAME%%.*}"
