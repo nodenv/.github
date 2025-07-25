@@ -38,6 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
+          VALIDATE_JSCPD: false # jscpd is false-positive prone and generally not useful
 
   dependency-review:
     if: startsWith('pull_request', github.event_name)
