@@ -17,8 +17,10 @@ permissions: { contents: read }
 jobs:
   npm-test:
     if: inputs.npm
-    runs-on: ${{ matrix.os }}-latest
-    strategy: { matrix: { os: [ubuntu, macOS] } }
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix: { os: [ubuntu-latest, macOS-latest] }
     steps:
       - uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
         with: { egress-policy: audit }
