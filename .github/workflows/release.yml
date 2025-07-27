@@ -69,6 +69,7 @@ jobs:
         with: # FIXME https://github.com/actions/setup-node/pull/129
           scope: ${{ inputs.npm_scope }}
           registry-url: https://registry.npmjs.org
+      - run: npm ci
       - run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
