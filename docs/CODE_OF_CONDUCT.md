@@ -136,3 +136,9 @@ at [https://www.contributor-covenant.org/translations][translations].
 [Mozilla CoC]: https://github.com/mozilla/diversity
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
+
+## Project Maintainers
+
+- Will McKenzie <<willmckenzie@oinutter.co.uk>>
+- Jason Karns <<jason.karns@gmail.com>>
+- Josh Hagins <<hagins.josh@gmail.com>>
