@@ -29,7 +29,7 @@ jobs:
     permissions: { contents: write }
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+      - uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
         with: { egress-policy: audit }
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       # TODO exit this job differently than success if release already exists
@@ -47,7 +47,7 @@ jobs:
     permissions: { contents: read }
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+      - uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
         with: { egress-policy: audit }
       - uses: mislav/bump-homebrew-formula-action@37c544ffe02cc3f4eb1987db8fa63c96e0b37098 # v3.5
         with:
@@ -62,7 +62,7 @@ jobs:
     permissions: { id-token: write }
     runs-on: ubuntu-latest
     steps:
-      - uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+      - uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
         with: { egress-policy: audit }
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
