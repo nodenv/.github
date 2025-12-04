@@ -68,5 +68,6 @@ jobs:
         with: # FIXME https://github.com/actions/setup-node/pull/129
           scope: ${{ inputs.npm_scope }}
           registry-url: https://registry.npmjs.org
+          node-version: 24 # Trusted Publishing requires npm v11.5.1+; node 24 bundles a sufficient version
       - run: npm ci
-      - run: npm publish --provenance
+      - run: npm publish
