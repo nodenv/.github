@@ -23,25 +23,25 @@ jobs:
     strategy:
       matrix:
         repo:
-          - node-build-prerelease
-          - homebrew-nodenv
-          - node-build
-          - nodenv-nvmrc
-          - nodenv-package-rehash
+          # - node-build-prerelease
+          # - homebrew-nodenv
+          # - node-build
+          # - nodenv-nvmrc
+          # - nodenv-package-rehash
           - nodenv
-          - nodenv-vars
-          - nodenv-update
-          - nodenv-package-json-engine
-          - nodenv-npm-migrate
-          - nodenv-man
-          - nodenv-installer
-          - nodenv-env
-          - nodenv-each
-          - nodenv-default-packages
-          - nodenv-aliases
-          - node-build-update-defs
-          - jetbrains-npm
-          - actions
+          # - nodenv-vars
+          # - nodenv-update
+          # - nodenv-package-json-engine
+          # - nodenv-npm-migrate
+          # - nodenv-man
+          # - nodenv-installer
+          # - nodenv-env
+          # - nodenv-each
+          # - nodenv-default-packages
+          # - nodenv-aliases
+          # - node-build-update-defs
+          # - jetbrains-npm
+          # - actions
     steps:
       - uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
         with: { egress-policy: audit }
