@@ -50,13 +50,13 @@ jobs:
         with:
           repository: nodenv/${{ matrix.repo }}
           persist-credentials: false
-      - uses: super-linter/super-linter/slim@v8.3.0
+      - uses: super-linter/super-linter/slim@5119dcd8011e92182ce8219d9e9efc82f16fddb6 # v8.0.0
         env:
           ### RUN_LOCAL+USE_FIND_ALGORITHM to workaround superlinter
           RUN_LOCAL: true
           USE_FIND_ALGORITHM: true
           ###
           GITHUB_TOKEN: ${{ github.token }}
-          BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
+          BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug #5731
           FILTER_REGEX_EXCLUDE: node_modules
           VALIDATE_JSCPD: false # prone to false-positives and not worth it
