@@ -52,8 +52,10 @@ jobs:
           persist-credentials: false
       - uses: super-linter/super-linter/slim@v8.3.0
         env:
-          # USE_FIND_ALGORITHM: true
+          ### RUN_LOCAL+USE_FIND_ALGORITHM to workaround superlinter
           RUN_LOCAL: true
+          USE_FIND_ALGORITHM: true
+          ###
           GITHUB_TOKEN: ${{ github.token }}
           BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
           FILTER_REGEX_EXCLUDE: node_modules
