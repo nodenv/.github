@@ -23,41 +23,40 @@ jobs:
     strategy:
       matrix:
         repo:
-          # - node-build-prerelease
-          # - homebrew-nodenv
-          # - node-build
-          # - nodenv-nvmrc
-          # - nodenv-package-rehash
+          - node-build-prerelease
+          - homebrew-nodenv
+          - node-build
+          - nodenv-nvmrc
+          - nodenv-package-rehash
           - nodenv
-          # - nodenv-vars
-          # - nodenv-update
-          # - nodenv-package-json-engine
-          # - nodenv-npm-migrate
-          # - nodenv-man
-          # - nodenv-installer
-          # - nodenv-env
-          # - nodenv-each
-          # - nodenv-default-packages
-          # - nodenv-aliases
-          # - node-build-update-defs
-          # - jetbrains-npm
-          # - actions
+          - nodenv-vars
+          - nodenv-update
+          - nodenv-package-json-engine
+          - nodenv-npm-migrate
+          - nodenv-man
+          - nodenv-installer
+          - nodenv-env
+          - nodenv-each
+          - nodenv-default-packages
+          - nodenv-aliases
+          - node-build-update-defs
+          - jetbrains-npm
+          - actions
     steps:
       - uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
         with: { egress-policy: audit }
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           repository: nodenv/${{ matrix.repo }}
-          fetch-depth: 0
+          # fetch-depth: 0
           persist-credentials: false
-      - run: pwd; head package.json
       - uses: super-linter/super-linter/slim@v8.3.0
         env:
-          VALIDATE_ALL_CODEBASE: true
-          USE_FIND_ALGORITHM: true
+          # VALIDATE_ALL_CODEBASE: true
+          # USE_FIND_ALGORITHM: true
           RUN_LOCAL: true
           GITHUB_TOKEN: ${{ github.token }}
           BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
           FILTER_REGEX_EXCLUDE: node_modules
-          VALIDATE_GIT_COMMITLINT: false
+          # VALIDATE_GIT_COMMITLINT: false
           VALIDATE_JSCPD: false # prone to false-positives and not worth it
