@@ -21,6 +21,7 @@ jobs:
     permissions: { contents: read, packages: read, statuses: write }
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         repo:
           - node-build-prerelease
