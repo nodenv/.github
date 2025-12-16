@@ -59,4 +59,5 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug #5731
           FILTER_REGEX_EXCLUDE: node_modules
-          VALIDATE_JSCPD: false # prone to false-positives and not worth it
+          VALIDATE_GIT_COMMITLINT: false # commitlint is bad
+          VALIDATE_JSCPD: false # too prone to false-positives
