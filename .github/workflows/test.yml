@@ -43,6 +43,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
           FILTER_REGEX_EXCLUDE: node_modules
+          VALIDATE_BIOME_FORMAT: false # conflicts with prettier
+          VALIDATE_BIOME_LINT: false # conflicts with prettier
           VALIDATE_GIT_COMMITLINT: false # commitlint is bad
           VALIDATE_JSCPD: false # too prone to false-positives
 
