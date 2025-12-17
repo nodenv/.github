@@ -25,6 +25,8 @@ jobs:
       matrix:
         repo:
           - actions
+          - actions-node-version
+          - actions-setup-nodenv
           # - homebrew-nodenv
           - jetbrains-npm
           # - node-build
