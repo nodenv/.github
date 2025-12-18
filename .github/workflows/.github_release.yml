@@ -9,9 +9,7 @@ jobs:
     uses: ./.github/workflows/release.yml
     with: { homebrew: false, npm: false }
     permissions: { contents: write, id-token: write }
-    secrets: inherit
 
   sync:
     uses: ./.github/workflows/sync-major-version.yml
     permissions: { contents: write }
-    secrets: inherit
