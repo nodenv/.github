@@ -40,7 +40,7 @@ jobs:
           - nodenv-npm-migrate
           # - nodenv-nvmrc
           # - nodenv-package-json-engine
-          # - nodenv-package-rehash
+          - nodenv-package-rehash
           # - nodenv-update
           - nodenv-vars
     steps:
