@@ -38,7 +38,7 @@ jobs:
           - nodenv-installer
           - nodenv-man
           - nodenv-npm-migrate
-          # - nodenv-nvmrc
+          - nodenv-nvmrc
           # - nodenv-package-json-engine
           - nodenv-package-rehash
           # - nodenv-update
