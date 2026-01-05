@@ -83,6 +83,6 @@ jobs:
         with:
           name: ossf-scorecard-results.sarif
           path: ossf-scorecard-results.sarif
-      - uses: github/codeql-action/upload-sarif@d6bbdef45e766d081b84a2def353b0055f728d3e # v3.29.3
+      - uses: github/codeql-action/upload-sarif@5d4e8d1aca955e8d8589aabd499c5cae939e33c7 # v4.31.9
         with:
           sarif_file: ossf-scorecard-results.sarif
