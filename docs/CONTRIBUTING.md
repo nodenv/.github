@@ -25,18 +25,18 @@ configuration assumes nodenv's remote is `origin`, and rbenv's remote is
 
 1. Configure rbenv to not fetch tags by default:
 
-```console
-git config remote.rbenv.tagOpt --no-tags
-```
+   ```console
+   git config remote.rbenv.tagOpt --no-tags
+   ```
+
+   > [!WARNING]
+   > The `--tags` option to `fetch` et. al. will override this setting.
 
 2. Fetch rbenv's tags to their own refspec namespace (`rbtags`, in this case):
 
-```console
-git config --add remote.rbenv.fetch '+refs/tags/*:refs/rbtags/*'
-```
-
-> [!WARNING]
-> The `--tags` option to `fetch` et. al. will override this setting.
+   ```console
+   git config --add remote.rbenv.fetch '+refs/tags/*:refs/rbtags/*'
+   ```
 
 Resulting snippet in `.git/config`:
 
