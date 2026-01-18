@@ -50,12 +50,10 @@ jobs:
         with:
           repository: nodenv/${{ matrix.repo }}
           persist-credentials: false
-      - uses: super-linter/super-linter/slim@d5b0a2ab116623730dd094f15ddc1b6b25bf7b99 # v8.3.2
+      - uses: super-linter/super-linter/slim@12562e48d7059cf666c43a4ecb0d3b5a2b31bd9e # v8.4.0
         env:
-          ### RUN_LOCAL+USE_FIND_ALGORITHM to workaround superlinter
-          RUN_LOCAL: true
-          USE_FIND_ALGORITHM: true
-          ###
+          USE_FIND_ALGORITHM: true # workaround superlinter
+          ### below here should match our reusable test workflow config
           GITHUB_TOKEN: ${{ github.token }}
           BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug #5731
           FILTER_REGEX_EXCLUDE: node_modules
