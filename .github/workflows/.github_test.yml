@@ -60,4 +60,6 @@ jobs:
           VALIDATE_BIOME_FORMAT: false # conflicts with prettier
           VALIDATE_BIOME_LINT: false # conflicts with prettier
           VALIDATE_GIT_COMMITLINT: false # commitlint is bad
+          VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_JSCPD: false # too prone to false-positives
+          VALIDATE_SPELL_CODESPELL: false # TODO
