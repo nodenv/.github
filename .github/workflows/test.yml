@@ -55,7 +55,7 @@ jobs:
           VALIDATE_GIT_COMMITLINT: false # commitlint is bad
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_JSCPD: false # too prone to false-positives
-          VALIDATE_SPELL_CODESPELL: false # TODO
+          SPELL_CODESPELL_CONFIG_FILE: .github/workflows/${{ job.workflow_repository }}/.github/linters/.codespellrc
 
   dependency-review:
     if: startsWith('pull_request', github.event_name)
