@@ -45,7 +45,7 @@ jobs:
           ref: ${{ job.workflow_sha }}
           path: .github/workflows/${{ job.workflow_repository }}
           persist-credentials: false
-      - run: pwd && ls -al .github/workflows/${{ job.workflow_repository }}/.github/linters/.codespellrc
+      - run: pwd && ls -al ${{ github.workspace }}/.github/workflows/${{ job.workflow_repository }}/.github/linters/.codespellrc
       - uses: super-linter/super-linter/slim@4ce20838b8ab83717e78138c5b3a1407148e0918 # v8.7.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -56,7 +56,7 @@ jobs:
           VALIDATE_GIT_COMMITLINT: false # commitlint is bad
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_JSCPD: false # too prone to false-positives
-          SPELL_CODESPELL_CONFIG_FILE: .github/workflows/${{ job.workflow_repository }}/.github/linters/.codespellrc
+          SPELL_CODESPELL_CONFIG_FILE: ${{ github.workspace }}/.github/workflows/${{ job.workflow_repository }}/.github/linters/.codespellrc
 
   dependency-review:
     if: startsWith('pull_request', github.event_name)
