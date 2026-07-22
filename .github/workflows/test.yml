@@ -45,7 +45,7 @@ jobs:
           ref: ${{ job.workflow_sha }}
           path: .github/workflows/${{ job.workflow_repository }}
           persist-credentials: false
-      - run: ls -al .github/workflows/${{ job.workflow_repository }}/.github/linters/.codespellrc
+      - run: pwd && ls -al .github/workflows/${{ job.workflow_repository }}/.github/linters/.codespellrc
       - uses: super-linter/super-linter/slim@4ce20838b8ab83717e78138c5b3a1407148e0918 # v8.7.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
