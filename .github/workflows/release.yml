@@ -49,7 +49,7 @@ jobs:
     steps:
       - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with: { egress-policy: audit }
-      - uses: mislav/bump-homebrew-formula-action@ccf2332299a883f6af50a1d2d41e5df7904dd769 # v4.1
+      - uses: mislav/bump-homebrew-formula-action@f865c8b0dbebd6e263cc06782a0e974c61cf12d2 # v4.2
         with:
           homebrew-tap: ${{ contains(fromJSON('["nodenv","node-build"]'),
             github.event.repository.name)
