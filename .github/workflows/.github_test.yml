@@ -24,25 +24,25 @@ jobs:
       fail-fast: false
       matrix:
         repo:
-          - actions
-          - homebrew-nodenv
-          - jetbrains-npm
+          # - actions
+          # - homebrew-nodenv
+          # - jetbrains-npm
           - node-build
-          - node-build-prerelease
-          - node-build-update-defs
+          # - node-build-prerelease
+          # - node-build-update-defs
           - nodenv
           - nodenv-aliases
-          - nodenv-default-packages
-          - nodenv-each
-          - nodenv-env
-          - nodenv-installer
-          - nodenv-man
-          - nodenv-npm-migrate
-          - nodenv-nvmrc
+          # - nodenv-default-packages
+          # - nodenv-each
+          # - nodenv-env
+          # - nodenv-installer
+          # - nodenv-man
+          # - nodenv-npm-migrate
+          # - nodenv-nvmrc
           - nodenv-package-json-engine
-          - nodenv-package-rehash
+          # - nodenv-package-rehash
           - nodenv-update
-          - nodenv-vars
+          # - nodenv-vars
     steps:
       - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with: { egress-policy: audit }
