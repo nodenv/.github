@@ -39,12 +39,15 @@ jobs:
         with: { egress-policy: audit }
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with: { fetch-depth: 0, persist-credentials: false }
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          repository: ${{ job.workflow_repository }}
-          ref: ${{ job.workflow_sha }}
-          path: .github/workflows/${{ job.workflow_repository }}
-          persist-credentials: false
+      # eventually check out .github repo itself to support sharing of config files.
+      # not necessary right now since codespell is borked.
+      # also, superlinter is behind and doesn't recognize job.workflow_* vars used below
+      # - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      #   with:
+      #     repository: ${{ job.workflow_repository }}
+      #     ref: ${{ job.workflow_sha }}
+      #     path: .github/workflows/${{ job.workflow_repository }}
+      #     persist-credentials: false
       - uses: super-linter/super-linter/slim@4ce20838b8ab83717e78138c5b3a1407148e0918 # v8.7.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -53,9 +56,8 @@ jobs:
           VALIDATE_BIOME_FORMAT: false # conflicts with prettier
           VALIDATE_BIOME_LINT: false # conflicts with prettier
           VALIDATE_GIT_COMMITLINT: false # commitlint is bad
-          VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_JSCPD: false # too prone to false-positives
-          VALIDATE_SPELL_CODESPELL: false # TODO
+          VALIDATE_SPELL_CODESPELL: false # too many false-positives
 
   dependency-review:
     if: startsWith('pull_request', github.event_name)
