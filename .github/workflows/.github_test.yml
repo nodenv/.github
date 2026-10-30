@@ -55,11 +55,10 @@ jobs:
           USE_FIND_ALGORITHM: true # workaround superlinter
           ### below here should match our reusable test workflow config
           GITHUB_TOKEN: ${{ github.token }}
-          BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug #5731
+          BASH_EXEC_IGNORE_LIBRARIES: true # superlinter bug
           FILTER_REGEX_EXCLUDE: node_modules
           VALIDATE_BIOME_FORMAT: false # conflicts with prettier
           VALIDATE_BIOME_LINT: false # conflicts with prettier
           VALIDATE_GIT_COMMITLINT: false # commitlint is bad
-          VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_JSCPD: false # too prone to false-positives
-          VALIDATE_SPELL_CODESPELL: false # TODO
+          VALIDATE_SPELL_CODESPELL: false # too many false-positives
