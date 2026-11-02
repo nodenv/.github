@@ -50,7 +50,7 @@ jobs:
         with:
           repository: nodenv/${{ matrix.repo }}
           persist-credentials: false
-      - uses: super-linter/super-linter/slim@4ce20838b8ab83717e78138c5b3a1407148e0918 # v8.7.0
+      - uses: super-linter/super-linter/slim@2da136927bd4a73596db63044b504547c62cb854 # v9.0.0
         env:
           USE_FIND_ALGORITHM: true # workaround superlinter
           ### below here should match our reusable test workflow config
